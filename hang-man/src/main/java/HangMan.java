@@ -1,4 +1,10 @@
-
+import java.io.Reader;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.FileReader;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class HangMan{
   private String mAnswer;
@@ -6,6 +12,15 @@ public class HangMan{
   private String mDashed;
   private boolean mGameFinished;
   private String mPastGuesses;
+  private ArrayList<String> mDictionary;
+
+
+  public HangMan(){
+    mAttempts = 5;
+    mDictionary = new ArrayList<String>();
+    mGameFinished = false;
+    mPastGuesses = "";
+  }
 
   public HangMan(String answer,int attempts){
     mAnswer = answer;
@@ -13,6 +28,13 @@ public class HangMan{
     mDashed = mAnswer.replaceAll("[a-zA-Z]","-");
     mGameFinished = false;
     mPastGuesses = "";
+  }
+
+  public void computersWord(){
+    Random rnd = new Random();
+    int index = rnd.nextInt(mDictionary.size());
+    mAnswer = mDictionary.get(index);
+    mDashed = mAnswer.replaceAll("[a-zA-Z]","-");
   }
 
   public String guess(char guess){
@@ -34,7 +56,7 @@ public class HangMan{
       mAttempts--;
       if(mAttempts==0){
         mGameFinished= true;
-        return "You lose";
+        return "You lose\nThe word was: "+mAnswer;
       }
       return "WRONG! You have " + mAttempts + " left";
     }
@@ -44,6 +66,19 @@ public class HangMan{
     }else{
       mGameFinished= true;
       return mDashed+"\nYou Win";
+    }
+  }
+  public void readFile(String fileName){
+    try{
+      FileReader inputFile = new FileReader(fileName);
+      BufferedReader bufferRead = new BufferedReader(inputFile);
+      String line;
+      while((line=bufferRead.readLine())!=null){
+        mDictionary.add(line);
+      }
+      bufferRead.close();
+    }catch(Exception e){
+      System.out.println("This failed");
     }
   }
 
