@@ -19,9 +19,9 @@ public class HangManTest{
   }
 
   @Test
-  public void HangMan_RetrieveAttempts_5() {
-    HangMan hang = new HangMan("Hi",5);
-    int expectedOutput = 5;
+  public void HangMan_RetrieveAttempts_6() {
+    HangMan hang = new HangMan("Hi",6);
+    int expectedOutput = 6;
     assertEquals(expectedOutput, hang.getAttemps());
   }
 

@@ -10,7 +10,7 @@ public class App {
     String gameType = myConsole.readLine();
     if(gameType.equalsIgnoreCase("computer")){
       HangMan gameC = new HangMan();
-      gameC.readFile("test.txt");
+      gameC.readFile("dictionary.txt");
       gameC.computersWord();
       System.out.println(gameC.getDashed());
       while(!gameC.isFinished()){
@@ -23,8 +23,6 @@ public class App {
     }else if(gameType.equalsIgnoreCase("human")){
       System.out.println("Choose a word to play Hang Man with");
       String hangManAnswer = myConsole.readLine();
-      System.out.println("Choose the number of attempts");
-      Integer hangManAttempts = Integer.parseInt(myConsole.readLine());
       HangMan game = new HangMan(hangManAnswer, hangManAttempts);
       System.out.println(game.getDashed());
       while(!game.isFinished()){

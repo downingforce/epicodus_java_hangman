@@ -16,15 +16,15 @@ public class HangMan{
 
 
   public HangMan(){
-    mAttempts = 5;
+    mAttempts = 6;
     mDictionary = new ArrayList<String>();
     mGameFinished = false;
     mPastGuesses = "";
   }
 
-  public HangMan(String answer,int attempts){
+  public HangMan(String answer){
     mAnswer = answer;
-    mAttempts = attempts;
+    mAttempts = 6;
     mDashed = mAnswer.replaceAll("[a-zA-Z]","-");
     mGameFinished = false;
     mPastGuesses = "";
