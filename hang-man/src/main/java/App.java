@@ -11,7 +11,9 @@ public class App {
     if(gameType.equalsIgnoreCase("computer")){
       HangMan gameC = new HangMan();
       gameC.readFile("dictionary.txt");
-      gameC.computersWord();
+      System.out.println("Choose: Easy, Medium or Hard");
+      String difficultyLevel = myConsole.readLine();
+      gameC.computersWord(difficultyLevel);
       System.out.println(gameC.getDashed());
       while(!gameC.isFinished()){
         System.out.println("Choose a letter");
@@ -23,7 +25,7 @@ public class App {
     }else if(gameType.equalsIgnoreCase("human")){
       System.out.println("Choose a word to play Hang Man with");
       String hangManAnswer = myConsole.readLine();
-      HangMan game = new HangMan(hangManAnswer, hangManAttempts);
+      HangMan game = new HangMan(hangManAnswer);
       System.out.println(game.getDashed());
       while(!game.isFinished()){
         System.out.println("Choose a letter");
@@ -46,13 +48,5 @@ public class App {
 
 
 
-//     ArrayList<String> test = new ArrayList<String>();
-//     HangMan hang = new HangMan();
-//     // List<String> dictionary = new ArrayList<String>();
-//     // String fileName = "test.txt";
-// hang.readFile("test.txt");
-//   String answer = hang.computersWord();
-//
-//     // String answer = hang.computersWord();
-//     System.out.println(answer);
+
   }

@@ -30,10 +30,29 @@ public class HangMan{
     mPastGuesses = "";
   }
 
-  public void computersWord(){
+  public void computersWord(String difficulty){
     Random rnd = new Random();
-    int index = rnd.nextInt(mDictionary.size());
-    mAnswer = mDictionary.get(index);
+    int maxLength;
+    int minLength;
+    boolean running = true;
+
+    if(difficulty.equalsIgnoreCase("easy")){
+      minLength=0;
+      maxLength = 6;
+    }else if(difficulty.equalsIgnoreCase("medium")){
+      minLength = 7;
+      maxLength = 11;
+    }else{
+      minLength = 12;
+      maxLength = 100;
+    }
+    while(running){
+      int index = rnd.nextInt(mDictionary.size());
+      if(mDictionary.get(index).length() >= minLength && mDictionary.get(index).length() <= maxLength){
+        mAnswer = mDictionary.get(index);
+        running = false;
+      }
+    }
     mDashed = mAnswer.replaceAll("[a-zA-Z]","-");
   }
 
